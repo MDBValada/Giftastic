@@ -54,23 +54,24 @@ function retrieveGifs(){
         for (let i = 0; i < resultArray.data.length; i++) {
             //make a variable and start filling it with the necessary html!
             let newDiv = $("<div>");
-            console.log(newDiv);
+  //          console.log(newDiv);
             //add an identifying class for futureproofing css
-            newDiv.addClass("imageDiv");
-            console.log(newDiv);
+//            newDiv.addClass("imageDiv");
+//            console.log(newDiv);
             //make a short-term variable for the Rating text
-            let ratingText = $("<h3>");
-            ratingText.html("Rating: " + resultArray.data[i].rating.toUpperCase());
-            console.log(ratingText);
+//            let ratingText = $("<h3>");
+//            ratingText.html("Rating: " + resultArray.data[i].rating.toUpperCase());
+//            console.log(ratingText);
             //then add it to the div!
-            newDiv.append(ratingText);
-            console.log(newDiv);
+ //           newDiv.append(ratingText);
+ //           console.log(newDiv);
             //make another short-term variable for the image url
-            let imageUrl = $("<img src='" + resultArray.data[i].images.fixed_height_still.url +"'>");
+            let imageUrl = $("<img>");
+            imageUrl.attr("src", resultArray.data[i].images.fixed_height_still.url)
             console.log(imageUrl);
-            imageUrl.attr("data-state", "still");
-            imageUrl.attr("data-still", resultArray.data[i].images.fixed_height_still.url);
-            imageUrl.attr("data-animate", resultArray.data[i].images.fixed_height.url);
+ //           imageUrl.attr("data-state", "still");
+ //           imageUrl.attr("data-still", resultArray.data[i].images.fixed_height_still.url);
+ //           imageUrl.attr("data-animate", resultArray.data[i].images.fixed_height.url);
             newDiv.append(imageUrl);
             //finally, let's append the new div to the actual gif-view container!
             $("#gif-view").append(newDiv);
@@ -92,3 +93,4 @@ function retrieveGifs(){
 buttonMaker();
 //creating a document on-click for the created buttons to trigger the proper function? this feels wrong. created a "tracking" class just for the data buttons
 $(document).on("click", ".tracking", retrieveGifs);
+//need to create an on-click to swap the states of the images from still to animate and back (same on-click?)
