@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GifTastic-Assignment 6</title>
+	<!--Style Reset, Bootstrap, and direct CSS link references added-->
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!--jQuery link-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+<!-- standard body container-->	
+<div class="container">
+    <!--divider for the buttons to spawn in-->
+    <div class="row">
+		<div class="col-md-12">
+			<div class="buttons-view"></div>
+		</div>
+    </div>
+
+    <!--locking the image container and the form search bar into a single row-->
+	<div class="row">
+        <!--9 length container for images to be placed-->
+        <div class="col-md-9 container-fluid">
+            <div class="gifs-view"></div>
+        </div>
+        
+        <!--3 length container for search form to add additional items to the list-->
+		<div class="col-md-3">
+            <!--create the form divider-->
+            <form id="gif-form">
+                <!--form Label, also the only text on the screen by default, break required for second line-->
+                <label for="topic-input">Enter your new topic here!</label><br>
+                <!--text input field here, with a line break-->
+                <input type="text" id="topic-input"><br>
+                <!--Add button for user to add a topic to the list-->
+	      		<input id="add-topic" class="btn btn-primary" type="submit" value="Add Topic">
+    		</form>
+        </div>
+        
+    </div>
+    
+</div>	
+
+
+	<!-- local Javascript link-->
+	<script type="text/javascript" src="assets/javascript/app.js"></script>	
+</body>
+</html>
