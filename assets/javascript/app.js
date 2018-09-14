@@ -43,17 +43,45 @@ function retrieveGifs(){
     let queryURL = "https://api.giphy.com/v1/gifs/search?api_key=RROn2ey6tvd2oO0W6g4wVCv00FBhnN49&q=" + gifName + "&limit=20&offset=0&lang=en";
 
     //ajax statement
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-      }).done(function(result) {
-        console.log(result);
-        //create an array variable to place the retrieved data from
-        let retrievedArray = result.data;
-        console.log(retrievedArray);
+    $.ajax({url: queryURL, method:"GET"}).done(function(result) {
+        let resultArray = result;
+        console.log(resultArray);
+        //i'm emptying the image container for now so it'll clear whenever a button is clicked
+        $("#gif-view").empty();
+        
+        //Now for the real fun! grabbing the correct image information and putting it on screen!
+        //using a for loop to grab only what is needed from the grabbed array
+        for (let i = 0; i < resultArray.data.length; i++) {
+            //make a variable and start filling it with the necessary html!
+            let newDiv = $("<div>");
+            console.log(newDiv);
+            //add an identifying class for futureproofing css
+            newDiv.addClass("imageDiv");
+            console.log(newDiv);
+            //make a short-term variable for the Rating text
+            let ratingText = $("<h3>");
+            ratingText.html("Rating: " + resultArray.data[i].rating.toUpperCase());
+            console.log(ratingText);
+            //then add it to the div!
+            newDiv.append(ratingText);
+            console.log(newDiv);
+            //make another short-term variable for the image url
+            let imageUrl = $("<img src='" + resultArray.data[i].images.fixed_height_still.url +"'>");
+            console.log(imageUrl);
+            imageUrl.attr("data-state", "still");
+            imageUrl.attr("data-still", resultArray.data[i].images.fixed_height_still.url);
+            imageUrl.attr("data-animate", resultArray.data[i].images.fixed_height.url);
+            newDiv.append(imageUrl);
+            //finally, let's append the new div to the actual gif-view container!
+            $("#gif-view").append(newDiv);
+            //now why the heck doesn't this work?!?!
+            
+        }
     });
 
 };
+
+//need to add a boolean check tied to the state of the image once i can actually get the thing to load on page!
 
 
 
