@@ -12,7 +12,7 @@ function buttonMaker(){
         //create a temporary variable and put the button html into it
         let tempButton = $("<button>");
         //add bootstrap class elements to the button variable
-        tempButton.addClass("btn btn-default");
+        tempButton.addClass("btn btn-default tracking");
         //set the data-name attribute to the current array item
         tempButton.attr("data-name", subjects[i]);
         //set the visible text on the button to the current array item
@@ -35,11 +35,32 @@ $("#add-topic").on("click", function(event){
     buttonMaker()
 });
 
+//creating the function to retrieve information from the giphy API via the data-name attribute
+function retrieveGifs(){
+    //retrieve the value of the data-name and return it to a variable from anything selected with a data-name attribute
+    let gifName = $(this).attr("data-name")
+    //create a variable to put the Giphy call into with the api KEY
+    let queryURL = "https://api.giphy.com/v1/gifs/search?api_key=RROn2ey6tvd2oO0W6g4wVCv00FBhnN49&q=" + gifName + "&limit=20&offset=0&lang=en";
+
+    //ajax statement
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).done(function(result) {
+        console.log(result);
+        //create an array variable to place the retrieved data from
+        let retrievedArray = result.data;
+        console.log(retrievedArray);
+    });
+
+};
 
 
 
 
 //
 
-//last item in the javascript, triggering the initial function.
+//last items in the javascript, triggering the initial function.
 buttonMaker();
+//creating a document on-click for the created buttons to trigger the proper function? this feels wrong. created a "tracking" class just for the data buttons
+$(document).on("click", ".tracking", retrieveGifs);
